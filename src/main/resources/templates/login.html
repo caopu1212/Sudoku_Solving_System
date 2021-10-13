@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+</head>
+
+<body>
+
+<div>
+    <div>log in</div>
+    <form id="login" action="loginPage" method="post">
+        <table>
+            <tr>
+                <td>user name</td>
+                <td><input type="text" name="tno"></input></td>
+            </tr>
+            <tr>
+                <td>password</td>
+                <td><input type="text" name="password"></input></td>
+            </tr>
+
+        </table>
+    </form>
+    <tr>
+        <td>submit</td>
+        <td><input type="submit" form="login"></td>
+    </tr>
+
+    <h1>
+
+        <img src="image/test2.jpg"/>
+
+    </h1>
+
+
+</div>
+
+</body>
+<script src="${ctx}/webjars/jquery/3.3.1-2/jquery.min.js"></script>
+<script src="too
+ls_1.js"></script>
+　<script language="JavaScript">
+
+
+
+    window.onload =function() {
+        var message="<%=session.getAttribute(message)%>";
+        if  ( session.getAttribute("message") == "false"){
+            window.alert(session.getAttribute("message"));
+        }else{
+            window.location.href="index.html";
+        }
+
+    };
+
+
+</script>

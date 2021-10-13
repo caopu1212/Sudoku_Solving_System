@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sudoku</title>
+
+    <link rel="icon" href="img/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css"  th:href="@{/css/styles.css}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/button.css}"/>
+    <script src="js/common.js"></script>
+</head>
+
+<body>
+<div class = "homepage">
+    <button  class="ant-btn ant-btn-red"  onclick="back_to_homepage()">HOME</button>
+</div>
+<div class="instructions">
+    <h2>Instructions </h2>
+    <ol>
+        <li>you are allowed to confirm the sudoku</li>
+        <li>you can click the number then enter <strong>number</strong>to modify.</li>
+        <li>To confirm the number, <strong>PRESS ENTER.</strong></li>
+        <li>You can <strong>DELETE</strong> any number which wasn't added by the bot.</li>
+        <!--<button type="button" onclick="submit()">test</button>-->
+        <div style="width: 60px;float: left;margin-left: 20px">
+            <button class="ant-btn ant-btn-red" onclick="submit()">submit</button>
+        </div>
+    </ol>
+</div>
+<div class="container">
+    <div class="game-board">
+        <div class="row" data-row="0">
+            <div class="cell" data-col="0"></div>
+            <div class="cell" data-col="1"></div>
+            <div class="cell" data-col="2"></div>
+            <div class="cell" data-col="3"></div>
+            <div class="cell" data-col="4"></div>
+            <div class="cell" data-col="5"></div>
+            <div class="cell" data-col="6"></div>
+            <div class="cell" data-col="7"></div>
+            <div class="cell" data-col="8"></div>
+
+        </div>
+        <div class="row" data-row="1">
+            <div class="cell" data-col="0"></div>
+            <div class="cell" data-col="1"></div>
+            <div class="cell" data-col="2"></div>
+            <div class="cell" data-col="3"></div>
+            <div class="cell" data-col="4"></div>
+            <div class="cell" data-col="5"></div>
+            <div class="cell" data-col="6"></div>
+            <div class="cell" data-col="7"></div>
+            <div class="cell" data-col="8"></div>
+
+        </div>
+        <div class="row" data-row="2">
+            <div class="cell" data-col="0"></div>
+            <div class="cell" data-col="1"></div>
+            <div class="cell" data-col="2"></div>
+            <div class="cell" data-col="3"></div>
+            <div class="cell" data-col="4"></div>
+            <div class="cell" data-col="5"></div>
+            <div class="cell" data-col="6"></div>
+            <div class="cell" data-col="7"></div>
+            <div class="cell" data-col="8"></div>
+
+        </div>
+        <div class="row" data-row="3">
+            <div class="cell" data-col="0"></div>
+            <div class="cell" data-col="1"></div>
+            <div class="cell" data-col="2"></div>
+            <div class="cell" data-col="3"></div>
+            <div class="cell" data-col="4"></div>
+            <div class="cell" data-col="5"></div>
+            <div class="cell" data-col="6"></div>
+            <div class="cell" data-col="7"></div>
+            <div class="cell" data-col="8"></div>
+
+        </div>
+        <div class="row" data-row="4">
+            <div class="cell" data-col="0"></div>
+            <div class="cell" data-col="1"></div>
+            <div class="cell" data-col="2"></div>
+            <div class="cell" data-col="3"></div>
+            <div class="cell" data-col="4"></div>
+            <div class="cell" data-col="5"></div>
+            <div class="cell" data-col="6"></div>
+            <div class="cell" data-col="7"></div>
+            <div class="cell" data-col="8"></div>
+
+        </div>
+        <div class="row" data-row="5">
+            <div class="cell" data-col="0"></div>
+            <div class="cell" data-col="1"></div>
+            <div class="cell" data-col="2"></div>
+            <div class="cell" data-col="3"></div>
+            <div class="cell" data-col="4"></div>
+            <div class="cell" data-col="5"></div>
+            <div class="cell" data-col="6"></div>
+            <div class="cell" data-col="7"></div>
+            <div class="cell" data-col="8"></div>
+
+        </div>
+        <div class="row" data-row="6">
+            <div class="cell" data-col="0"></div>
+            <div class="cell" data-col="1"></div>
+            <div class="cell" data-col="2"></div>
+            <div class="cell" data-col="3"></div>
+            <div class="cell" data-col="4"></div>
+            <div class="cell" data-col="5"></div>
+            <div class="cell" data-col="6"></div>
+            <div class="cell" data-col="7"></div>
+            <div class="cell" data-col="8"></div>
+
+        </div>
+        <div class="row" data-row="7">
+            <div class="cell" data-col="0"></div>
+            <div class="cell" data-col="1"></div>
+            <div class="cell" data-col="2"></div>
+            <div class="cell" data-col="3"></div>
+            <div class="cell" data-col="4"></div>
+            <div class="cell" data-col="5"></div>
+            <div class="cell" data-col="6"></div>
+            <div class="cell" data-col="7"></div>
+            <div class="cell" data-col="8"></div>
+
+        </div>
+        <div class="row" data-row="8">
+            <div class="cell" data-col="0"></div>
+            <div class="cell" data-col="1"></div>
+            <div class="cell" data-col="2"></div>
+            <div class="cell" data-col="3"></div>
+            <div class="cell" data-col="4"></div>
+            <div class="cell" data-col="5"></div>
+            <div class="cell" data-col="6"></div>
+            <div class="cell" data-col="7"></div>
+            <div class="cell" data-col="8"></div>
+
+        </div>
+    </div>
+</div>
+<input type="text" style="display:none" id="test1" th:value="${msg}">
+<!--<span th:text="${firstParam}" id="test2" class="test22" value="123"> </span>-->
+</body>
+
+
+<script type="text/javascript">
+    var a = $("#test1").val();
+    console.log(a);
+    alert(a)
+    var count = 0;
+    var list = a.split(",");
+    var sudoku = new Array();
+    for (let i = 0; i < 9; i++) {
+        sudoku[i] = new Array();
+        for (let j = 0; j < 9; j++) {
+            sudoku[i][j] = list[count];
+            count++;
+        }
+    }
+    console.log(sudoku);
+    // TakeAway: Event delegation. Instead of listening for click on every cell,
+    // listening it on the board itself.
+    $(".game-board").click(cellClicked);
+    $(window).keyup(keyPressed);
+    grid = [
+        ["", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", ""]
+    ];
+    //好像是挖空用的
+    // populateTheBoard(grid, "test");
+    filltheSquaresForUser(sudoku);
+
+    //获取修改好的数独
+
+    function get_sudoku() {
+        let rowSelector;
+        let colSelector;
+
+        let str = "";
+        for (let i = 0; i < 9; i++) {
+            for (let j = 0; j < 9; j++) {
+                rowSelector = `[data-row="${i}"`;
+                colSelector = `[data-col="${j}"`;
+                let row = $(rowSelector);
+                let col = row.find(colSelector).text();
+                str = str + col+",";
+            }
+        }
+        // console.log(list);
+        console.log(str);
+        return str
+    }
+
+    //提交 发送修改好的数独回后台
+    function submit() {
+        $.ajax({
+            url: "http://localhost:8080/result",
+            type: "post",
+            data: {
+                sudoku: get_sudoku(),
+                id:"123"
+            },
+            contentType : "application/x-www-form-urlencoded",
+            async:false,
+            success: function (data) {
+                console.log(data)
+                alert("成功");
+                //页面跳转
+                window.location.replace(data);
+                //
+                // if (data.status == "success") {
+                //
+                //     $("#name").html(data.member.name);
+                //     $("#sex").html(data.member.sex);
+                //     $("#telephone").html(data.member.telephone);
+                // }
+            },
+            error: function (data) {
+                alert(get_sudoku());
+            }
+        });
+    }
+
+
+    function cellClicked(event) {
+        $(".cell").removeClass("active");
+        $(event.target).addClass("active");
+    }
+
+    function keyPressed(event) {
+        let activeCell = $(".cell.active");
+        // Unprocessed events.
+        if (activeCell == undefined) return;
+        if (activeCell.hasClass("bot")) return;
+
+        if (event.key >= 0 && event.key <= 9) {
+            activeCell.text(event.key);
+        }
+
+        if (event.key == "Enter") {
+
+            if (activeCell.text() !== "") {
+
+                // TakeAway: Effective use of data attributes.
+                let col = activeCell.data("col");
+                let row = activeCell.parent().data("row");
+
+                activeCell.addClass("filled");
+                grid[row][col] = activeCell.text();
+
+                // TakeAway: Apply transient animations
+                activeCell.addClass("success");
+                activeCell.one("animationend", function () {
+                    activeCell.removeClass("success");
+                });
+                //给填入做验证
+                //     if (isValidPlace(grid, [row, col], activeCell.text())) {
+                //
+                //         activeCell.addClass("filled");
+                //         grid[row][col] = activeCell.text();
+                //
+                //         // TakeAway: Apply transient animations
+                //         activeCell.addClass("success");
+                //         activeCell.one("animationend", function () {
+                //             activeCell.removeClass("success");
+                //         });
+                //     }
+                //     else {
+                //         activeCell.text("");
+                //
+                //         activeCell.addClass("failure");
+                //         activeCell.one("animationend", function () {
+                //             activeCell.removeClass("failure");
+                //         });
+                //     }
+                // }
+            }
+        }
+
+        if (event.key == "Delete") {
+
+            if (activeCell.text() !== "") {
+
+                let col = activeCell.data("col");
+                let row = activeCell.parent().data("row");
+
+                grid[row][col] = "";
+
+                activeCell.text("");
+                activeCell.removeClass("filled");
+            }
+        }
+    }
+
+    function getInitialCellsToFillForLevel(level) {
+        switch (level) {
+            case "easy":
+                return 25;
+            case "medium":
+                return 20;
+            case "tough":
+                return 15;
+            case "test":
+                return 81;
+        }
+    }
+
+    function fillEmptySpot(board) {
+        let row;
+        let col;
+        let num;
+
+        while (true) {
+
+            // TakeAway: Generate the game randomly.
+            row = Math.floor(Math.random() * 9);
+            col = Math.floor(Math.random() * 9);
+            num = Math.ceil(Math.random() * 9);
+
+            if (board[row][col] == "") {
+                if (isValidPlace(board, [row, col], num)) {
+                    board[row][col] = num;
+                    break;
+                }
+            }
+
+
+        }
+
+    }
+
+    function populateTheBoard(board, level) {
+        let cellsToFill = getInitialCellsToFillForLevel(level);
+        for (let i = 0; i < cellsToFill; i++) {
+            fillEmptySpot(board);
+        }
+    }
+
+    //填入数字
+    function filltheSquaresForUser(board) {
+        let rowSelector;
+        let colSelector;
+
+        for (let i = 0; i < board.length; i++) {
+            for (let j = 0; j < board[0].length; j++) {
+                if (board[i][j] == "") continue;
+                rowSelector = `[data-row="${i}"`;
+                colSelector = `[data-col="${j}"`;
+                let row = $(rowSelector);
+                if (row != undefined) {
+
+                    let col = row.find(colSelector);
+                    if (col != undefined) {
+                        //在这填值
+                        col.text(sudoku[i][j]);
+                        // col.text(a);
+
+                        col.addClass("filled");
+                        // col.addClass("bot");
+                    }
+
+                }
+            }
+        }
+    }
+
+    // Game Functions
+    function isValidPlace(board, pos, num) {
+
+        // Validate the Row
+        for (let i = 0; i < board.length; i++) {
+            if (board[i][pos[1]] == num && i != pos[0]) {
+                return false;
+            }
+        }
+
+        // Validate the Col
+        for (let i = 0; i < board[0].length; i++) {
+            if (board[pos[0]][i] == num && i != pos[1]) {
+                return false;
+            }
+        }
+
+        // Validate the local 3*3 cell
+        let localCellRow = Math.floor(pos[0] / 3);
+        let localCellCol = Math.floor(pos[1] / 3);
+
+        for (let i = localCellRow * 3; i < localCellRow * 3 + 3; i++) {
+            for (let j = localCellCol * 3; j < localCellCol * 3 + 3; j++) {
+                if (board[i][j] == num && pos[0] != i && pos[1] != j) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    function isValidSudoku(board) {
+
+        for (let i = 0; i < board.length; i++) {
+            for (let j = 0; j < board[0].length; j++) {
+                if (board[i][j] != "") {
+                    if (!isValidPlace(board, [i, j], board[i][j])) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+</script>
+
+</html>
+
